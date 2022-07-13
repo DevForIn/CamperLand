@@ -10,8 +10,8 @@
 			FROM
 				board
 			WHERE
-				board_rownum = 1
-			ORDER BY board_rownum DESC
+				nickname = "덜순"
+			ORDER BY board_rownum
 		]]>
     </select>
 </mapper>
