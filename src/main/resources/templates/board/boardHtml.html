@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
 <head>
     <meta charset="UTF-8">
     <title>게시판 Test</title>
@@ -30,17 +30,19 @@
 <table>
     <tr>
         <th>No</th>
-        <th>Title</th>
         <th>Writer</th>
+        <th>Title</th>
         <th>Regdate</th>
-        <th>Count</th>
-    </tr
-    <tr>
-        <td>6</td>
-        <td id="a">test1</td>
-        <td>tester</td>
-        <td>2022.07.04</td>
-        <td>0</td>
+        <th>Like</th>
+        <th>View</th>
+    </tr>
+    <tr th:each="list : ${board}">
+        <td th:text="${list.boardRownum}"></td>
+        <td th:text="${list.nickname}"></td>
+        <td th:text="${list.title}"></td>
+        <td th:text="${list.regDate}"></td>
+        <td th:text="${list.likeCount}"></td>
+        <td th:text="${list.viewCount}"></td>
     </tr>
 </table>
 </body>

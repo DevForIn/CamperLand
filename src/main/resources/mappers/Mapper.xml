@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.CamperLand.CT.mapper.BoardMapper">
+    <select id="getList" resultType="com.CamperLand.CT.logic.Board">
+        <![CDATA[
+			SELECT
+				board_rownum, nickname, title, reg_date, like_count, view_count
+			FROM
+				board
+			WHERE
+				board_rownum = 1
+			ORDER BY board_rownum DESC
+		]]>
+    </select>
+</mapper>
