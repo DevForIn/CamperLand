@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
 <head>
-    <meta charset="UTF-8">
-    <title>게시판 Test</title>
-<style>
-    table{
-        width : 100%;
-        border : 1px solid #bbbdcf;
-        border-collapse : collapse;
-        text-align : center;
-    }
-    th {
-        color : white;
-        background-color : gray;
-    }
-    th, td {
-        border: 1px solid #bbbdcf;
-        padding : 10px;
-
-    }
-    #a {
-        text-align : left;
-    }
-
-</style>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/board.css}"/>
+<title>게시판 Test</title>
 </head>
 <body>
-<h4> 게시판이 될 H T M L</h4>
-<table>
-    <tr>
-        <th>No</th>
-        <th>Writer</th>
-        <th>Title</th>
-        <th>Regdate</th>
-        <th>Like</th>
-        <th>View</th>
-    </tr>
-    <tr th:each="list : ${board}">
-        <td th:text="${list.boardRownum}"></td>
-        <td th:text="${list.nickname}"></td>
-        <td th:text="${list.title}"></td>
-        <td th:text="${list.regDate}"></td>
-        <td th:text="${list.likeCount}"></td>
-        <td th:text="${list.viewCount}"></td>
-    </tr>
-</table>
+<div class="container">
+    <table class="board_list">
+        <colgroup>
+            <col width="10%">
+            <col width="15%">
+            <col width="*%">
+            <col width="20%">
+            <col width="10%">
+            <col width="10%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Writer</th>
+                <th>Title</th>
+                <th>Regdate</th>
+                <th>Like</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="list, i : ${board}">
+                <td th:text="${i.index+1}"></td>
+                <td th:text="${list.nickname}"></td>
+                <td class="title">
+                    <a href="boardDetail?num=" th:attrappend="href=${list.boardRownum}" th:text="${list.title}"></a>
+                </td>
+                <td th:text="${#dates.format(list.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${list.likeCount}"></td>
+                <td th:text="${list.viewCount}"></td>
+            </tr>
+            <tr th:unless="${#lists.size(board)} > 0">
+                <td colspan="6">조회된 결과 없음.</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="boardWrite" class="btn">글 쓰기</a>
+</div>
 </body>
 </html>

@@ -11,10 +11,14 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class BoardService {
-
     private final BoardMapper boardMapper;
+
 
     public List<Board> boardList(){
         return boardMapper.getList();
     }
+    public void insertBoard(Board board) {
+        boardMapper.insertBoard(board);
+    }
+
 }
