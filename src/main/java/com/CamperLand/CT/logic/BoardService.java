@@ -17,8 +17,11 @@ public class BoardService {
     public List<Board> boardList(){
         return boardMapper.getList();
     }
-    public void insertBoard(Board board) {
-        boardMapper.insertBoard(board);
+    public void insertBoard(Board board, int cnt) {
+        boardMapper.insertBoard(board,cnt);
     }
 
+    public int boardCount() {
+        return boardMapper.boardCount();
+    }
 }

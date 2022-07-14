@@ -33,7 +33,8 @@ public class BoardController {
     }
     @PostMapping("boardWrite")
     public String postBoardWrite(Model model, Board board){
-        boardService.insertBoard(board);
+        int cnt = boardService.boardCount();
+        boardService.insertBoard(board,cnt);
         List<Board> boardlist = boardService.boardList();
         model.addAttribute("board",boardlist);
         return "board/boardHtml";

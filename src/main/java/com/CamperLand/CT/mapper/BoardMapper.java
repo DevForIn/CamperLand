@@ -10,6 +10,7 @@ import java.util.List;
 public interface BoardMapper {
     List<Board> getList();
 
-    void insertBoard(@Param("board") Board board);
+    void insertBoard(@Param("board") Board board, @Param("cnt") int cnt);
 
+    int boardCount();
 }
