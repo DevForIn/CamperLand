@@ -32,9 +32,11 @@ public class BoardController {
         return "board/boardWrite";
     }
     @PostMapping("boardWrite")
-    public String postBoardWrite(Board board){
+    public String postBoardWrite(Model model, Board board){
         boardService.insertBoard(board);
-        return "redirect:/board/boardHtml";
+        List<Board> boardlist = boardService.boardList();
+        model.addAttribute("board",boardlist);
+        return "board/boardHtml";
     }
 }
 

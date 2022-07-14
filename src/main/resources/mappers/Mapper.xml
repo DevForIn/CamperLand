@@ -12,16 +12,7 @@
 			ORDER BY board_rownum
 		]]>
     </select>
-    <select id="boardCount" resultType="Integer">
-        <![CDATA[
-			SELECT
-				count(board_rownum)
-			FROM
-				board
-		]]>
-    </select>
     <insert id="insertBoard" parameterType="com.CamperLand.CT.logic.Board">
-        [<![CDATA[
             INSERT INTO board (
                 board_rownum,
                 nickname,
@@ -31,7 +22,7 @@
                 like_count,
                 view_count
             ) VALUES (
-                3,
+                10,
                 '덜순',
                 #{board.title},
                 #{board.content},
@@ -39,6 +30,5 @@
                 0,
                 0
             )
-        ]]>
     </insert>
 </mapper>
