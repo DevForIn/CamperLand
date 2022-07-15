@@ -27,15 +27,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="list, i : ${board}">
+            <tr th:each="board, i : ${board}">
                 <td th:text="${i.index+1}"></td>
-                <td th:text="${list.nickname}"></td>
+                <td th:text="${board.nickname}"></td>
                 <td class="title">
-                    <a href="boardDetail?num=" th:attrappend="href=${list.boardRownum}" th:text="${list.title}"></a>
+                    <a href="boardDetail?num=" th:attrappend="href=${board.boardRownum}" th:text="${board.title}"></a>
                 </td>
-                <td th:text="${#dates.format(list.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-                <td th:text="${list.likeCount}"></td>
-                <td th:text="${list.viewCount}"></td>
+                <td th:text="${#dates.format(board.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${board.likeCount}"></td>
+                <td th:text="${board.viewCount}"></td>
             </tr>
             <tr th:unless="${#lists.size(board)} > 0">
                 <td colspan="6">조회된 결과 없음.</td>

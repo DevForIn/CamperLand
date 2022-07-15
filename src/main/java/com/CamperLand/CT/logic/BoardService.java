@@ -22,4 +22,16 @@ public class BoardService {
     public int boardCount() {
         return boardMapper.boardCount();
     }
+
+    public Board boardDetail(int num) {
+        return boardMapper.boardDetail(num);
+    }
+
+    public void boardUpdate(Board board) {
+        boardMapper.boardUpdate(board);
+    }
+
+    public void boardDelete(int num) {
+        boardMapper.boardDelete(num);
+    }
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+<head>
+<meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/board.css}"/>
+<title>게시글 상세보기</title>
+</head>
+<body>
+<div class="container">
+  <form id="frm" method="post">
+    <table class="board_detail">
+      <colgroup>
+        <col width="15%">
+        <col width="35%">
+        <col width="15%">
+        <col width="35%">
+      </colgroup>
+      <caption>게시글 상세 내용</caption>
+      <tbody>
+      <tr>
+        <th scope="row">좋아요 수</th>
+        <td th:text="${board.likeCount}"></td>
+        <th scope="row">조회수</th>
+        <td th:text="${board.viewCount}"></td>
+      </tr>
+      <tr>
+        <th scope="row">작성자</th>
+        <td th:text="${board.nickname}"></td>
+        <th scope="row">작성일</th>
+        <td th:text="${board.regDate}"></td>
+      </tr>
+      <tr>
+        <th scope="row">제목</th>
+        <td colspan="3" th:text="${board.title}"></td>
+      </tr>
+      <tr>
+        <td colspan="4" class="view_text" th:text="${board.content}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <a href="/board" class="btn">목록으로</a>
+  <a href="/boardUpdate?num=" th:attrappend="href=${board.boardRownum}" class="btn">수정</a>
+  <a href="/boardDelete?num=" th:attrappend="href=${board.boardRownum}" class="btn">삭제</a>
+</div>
+</body>
+</html>

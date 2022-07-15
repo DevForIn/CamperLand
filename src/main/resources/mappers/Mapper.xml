@@ -39,4 +39,28 @@
                 0
             )
     </insert>
+    <select id="boardDetail" resultType="com.CamperLand.CT.logic.Board">
+        <![CDATA[
+			SELECT
+				*
+			FROM
+				board
+			WHERE
+			    board_rownum = #{num}
+		]]>
+    </select>
+    <update id="boardUpdate" parameterType="com.CamperLand.CT.logic.Board">
+        UPDATE
+            board
+        SET
+            title = #{board.title},  content = #{board.content}
+        WHERE
+            board_rownum = #{board.boardRownum}
+    </update>
+    <delete id="boardDelete" parameterType="Integer">
+        DELETE FROM
+            board
+        WHERE
+            board_rownum=#{num}
+    </delete>
 </mapper>

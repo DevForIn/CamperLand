@@ -39,5 +39,37 @@ public class BoardController {
         model.addAttribute("board",boardlist);
         return "board/boardHtml";
     }
+    @GetMapping("boardDetail")
+    public String getBoardDetail(Model model, int num){
+        Board board = boardService.boardDetail(num);
+        model.addAttribute("board",board);
+        return "board/boardDetail";
+    }
+    @GetMapping("boardUpdate")
+    public String getBoardWrite(Model model,int num){
+        Board board = boardService.boardDetail(num);
+        model.addAttribute("board",board);
+        return "board/boardUpdate";
+    }
+    @PostMapping("boardUpdate")
+    public String PostBoardWrite(Model model, Board board){
+        boardService.boardUpdate(board);
+        List<Board> boardlist = boardService.boardList();
+        model.addAttribute("board",boardlist);
+        return "board/boardHtml";
+    }
+    @GetMapping("boardDelete")
+    public String getBoardDelete(Model model,int num){
+        Board board = boardService.boardDetail(num);
+        model.addAttribute("board",board);
+        return "board/boardDelete";
+    }
+    @PostMapping("boardDelete")
+    public String postBoardDelete(Model model,Board board){
+        boardService.boardDelete(board.getBoardRownum());
+        List<Board> boardlist = boardService.boardList();
+        model.addAttribute("board",boardlist);
+        return "board/boardHtml";
+    }
 }
 

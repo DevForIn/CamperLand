@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/board.css}"/>
+<title>게시글 등록</title>
+</head>
+<body>
+<div class="container">
+  <h2>게시글 삭제</h2>
+  <form id="board" name="board" method="post" action="/boardDelete">
+    <table class="board_detail">
+      <input type="hidden" name="boardRownum" th:value="${board.boardRownum}" />
+      <tr>
+        <th scope="row">비밀번호</th>
+        <td>
+          <input type="text" name="password" >
+        </td>
+      </tr>
+    </table>
+    <input type="submit" id="submit" value="삭제" class="btn"/>
+  </form>
+</div>
+</body>
+</html>
