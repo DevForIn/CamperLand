@@ -5,62 +5,30 @@
 <mapper namespace="com.CamperLand.CT.mapper.BoardMapper">
     <select id="getList" resultType="com.CamperLand.CT.logic.Board">
         <![CDATA[
-			SELECT
-				board_rownum, nickname, title, reg_date, like_count, view_count
-			FROM
-				board
-			ORDER BY board_rownum
-		]]>
+            SELECT board_rownum,nickname,title,content,like_count,view_count,reg_date
+            FROM board
+            ORDER BY board_rownum
+        ]]>
     </select>
     <select id="boardCount" resultType="Integer">
         <![CDATA[
-			SELECT
-				count(*)
-			FROM
-				board
-		]]>
+            SELECT count(*) FROM board
+        ]]>
     </select>
     <insert id="insertBoard" parameterType="com.CamperLand.CT.logic.Board">
-            INSERT INTO board (
-                board_rownum,
-                nickname,
-                title,
-                content,
-                reg_date,
-                like_count,
-                view_count
-            ) VALUES (
-                #{cnt}+1,
-                '덜순',
-                #{board.title},
-                #{board.content},
-                NOW(),
-                0,
-                0
-            )
+        INSERT INTO board (nickname,title,content,reg_date,like_count,view_count)
+        VALUES ('덜순',#{board.title},#{board.content},utc_timestamp(),0,0)
     </insert>
     <select id="boardDetail" resultType="com.CamperLand.CT.logic.Board">
-        <![CDATA[
-			SELECT
-				*
-			FROM
-				board
-			WHERE
-			    board_rownum = #{num}
-		]]>
+        SELECT * FROM board WHERE board_rownum=#{num}
     </select>
     <update id="boardUpdate" parameterType="com.CamperLand.CT.logic.Board">
-        UPDATE
-            board
-        SET
-            title = #{board.title},  content = #{board.content}
-        WHERE
-            board_rownum = #{board.boardRownum}
+        UPDATE board
+        SET title=#{board.title},content=#{board.content}
+        WHERE board_rownum=#{board.boardRownum}
     </update>
     <delete id="boardDelete" parameterType="Integer">
-        DELETE FROM
-            board
-        WHERE
-            board_rownum=#{num}
+        DELETE FROM board
+        WHERE board_rownum=#{num}
     </delete>
 </mapper>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/board.css}"/>
+<link rel="stylesheet" href="/css/board.css"/>
 <title>게시판 Test</title>
 </head>
 <body>
@@ -26,8 +26,8 @@
                 <th>View</th>
             </tr>
         </thead>
-        <tbody>
-            <tr th:each="board, i : ${board}">
+        <tbody class="boardList">
+<!--            <tr th:each="board, i : ${board}">
                 <td th:text="${i.index+1}"></td>
                 <td th:text="${board.nickname}"></td>
                 <td class="title">
@@ -39,10 +39,36 @@
             </tr>
             <tr th:unless="${#lists.size(board)} > 0">
                 <td colspan="6">조회된 결과 없음.</td>
-            </tr>
+            </tr>-->
         </tbody>
     </table>
     <a href="boardWrite" class="btn">글 쓰기</a>
 </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function (){
+        const request = new XMLHttpRequest();
+        request.open("GET", "/boards", true);
+        request.send();
+        request.onload = function () {
+            if(request.status === 200) {
+                const boardList = JSON.parse(request.response);
+                const tBody = document.querySelector(".boardList");
+                const fragment = document.createDocumentFragment();
+                for(const board of boardList) {
+                    console.log(board)
+                    const tr = document.createElement("tr");
+                    tr.innerHTML += `<td>${board.boardRownum}</td>`;
+                    tr.innerHTML += `<td>${board.nickname}</td>`;
+                    tr.innerHTML += `<td className="title"><a href="boardDetail?num=${board.boardRownum}">${board.title}</a></td>`;
+                    tr.innerHTML += `<td>${board.regDate}</td>`;
+                    tr.innerHTML += `<td>${board.likeCount}</td>`;
+                    tr.innerHTML += `<td>${board.viewCount}</td>`;
+                    fragment.appendChild(tr);
+                }
+                tBody.appendChild(fragment)
+            }
+        }
+    })
+</script>
 </html>
